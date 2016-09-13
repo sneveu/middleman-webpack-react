@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 
@@ -24,11 +25,14 @@ module.exports = {
       // SCSS
       { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!sass")},
       { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize") },
+
+      // FONTS
+      { test: /\.(eot|svg|ttf|woff|woff2|otf)$/, loader: 'file?name=[name].[ext]'}
+
     ],
   },
 
   resolve: {
-      // you can now require('file') instead of require('file.react.jsx')
       extensions: ['', '.js', '.json', '.jsx'] 
     },
 
@@ -41,7 +45,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: "react",
       ReactDOM: "react-dom"
-    })
+    }),
+
+    new CopyWebpackPlugin([{from: './source/assets', to: 'assets' }], {copyUnmodified: true})
   ],
 
 };
