@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 
@@ -12,15 +12,14 @@ module.exports = {
   },
 
   output: {
-    path: './build',
+    path: './.tmp/dist',
     filename: 'javascripts/[name].js'
   },
 
   module: {
     loaders: [
-
       // JS
-      { test: /source\/javascripts\/.*\.js$/, exclude: /(node_modules|build)/, loader: 'babel-loader', query: {presets: ['es2015', 'react']}},
+      { test: /source\/javascripts\/.*\.js$/, exclude: /(node_modules|\.tmp|build)/, loader: 'babel-loader', query: {presets: ['es2015', 'react']}},
 
       // SCSS
       { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!sass")},
@@ -33,7 +32,7 @@ module.exports = {
   },
 
   resolve: {
-      extensions: ['', '.js', '.json', '.jsx'] 
+      extensions: ['', '.js', '.json', '.jsx']
     },
 
   plugins: [
@@ -47,7 +46,9 @@ module.exports = {
       ReactDOM: "react-dom"
     }),
 
-    new CopyWebpackPlugin([{from: './source/assets', to: 'assets' }], {copyUnmodified: true})
+    // Remove/clean build folder before building
+    // new CleanWebpackPlugin('build')
+
   ],
 
 };

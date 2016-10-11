@@ -5,7 +5,7 @@ activate :external_pipeline,
   command: build? ?
   "./node_modules/webpack/bin/webpack.js --bail -p" :
   "./node_modules/webpack/bin/webpack.js --watch -d --progress --color",
-  source: "build",
+  source: ".tmp/dist",
   latency: 1
 
 
@@ -38,7 +38,7 @@ end
 
 # Deploy site to github pages
 activate :deploy do |deploy|
-  
+
   deploy.build_before = true
 
   deploy.deploy_method = :git
