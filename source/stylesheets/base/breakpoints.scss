@@ -1,0 +1,70 @@
+// -------------------------------------------------
+//
+// Media queries breakpoints & mixin
+// 
+// -------------------------------------------------
+
+$breakpoints: (
+  "phone" 320px,
+  "phone-plus" 420px,
+  "phablet" 640px,
+  "chode" 780px,
+  "tablet" 1025px,
+  "notebook" 1120px,
+  "laptop" 1368px,
+  "desktop" 1540px,
+  "cinema" 1800px
+);
+
+$breakpoint-tablet: 1025px;
+$breakpoint-notebook: 1200px;
+$breakpoint-iphone5s-height: 568px;
+
+@mixin mq($size, $type: "min-width") { 
+  @each $breakpoint in $breakpoints {
+    @if ($size == nth($breakpoint, 1)) {
+      @media ($type: nth($breakpoint, 2)) {
+        @content;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------
+// For checking what breakpoint we are at
+//
+
+body {
+
+  @include mq('phone') {
+    content: 'phone';
+  }
+
+  @include mq('phone-plus') {
+    content: 'phone-plus';
+  }
+
+  @include mq('phablet') {
+    content: 'phablet';
+  }
+
+  @include mq('tablet') {
+    content: 'tablet';
+  }
+
+  @include mq('notebook') {
+    content: 'notebook';
+  }
+
+  @include mq('laptop') {
+    content: 'laptop';
+  }
+
+  @include mq('desktop') {
+    content: 'desktop';
+  }
+
+  @include mq('cinema') {
+    content: 'cinema';
+  }
+}

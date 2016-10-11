@@ -1,0 +1,60 @@
+/* 
+
+Base font size
+--------------
+
+- Font sizes and padding/margins are based off the base
+- Fonts should be using EMS
+- Padding/margins should use REMS
+
+*/
+
+$font-size: 18px;
+
+/* 
+
+Slugs & Gutters
+---------------
+
+- Slugs define vertical spacing
+- Gutters define horizontal spacing
+
+*/
+
+$slug: 1rem;
+$gutter: 1.5rem;
+
+/*
+
+Colors
+------
+
+- Basic shades
+- Primary, Secondary, Tertiary
+
+*/
+
+$black: #000000;
+$white: #FFFFFF;
+$grey: lighten($black, 50%);
+$grey--light: lighten($black, 75%);
+$grey--dark: lighten($black, 25%);
+
+$primary: red;
+$secondary: blue;
+$tertiary: green;
+
+/* 
+
+Z-index
+-------
+
+- Semantic layers
+- z-index: $top;
+
+*/
+
+$top: 4;
+$middle: 3;
+$bottom: 2;
+$base: 1; 

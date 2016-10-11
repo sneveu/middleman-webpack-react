@@ -3,17 +3,28 @@
   %head
     %meta{charset: "utf-8"}/
     %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
-    %meta{content: "width=device-width, initial-scale=1, user-scalable=no", name: "viewport"}/
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0, maximum-scale=1.0"}/
 
-    %title
-      = current_page.data.title || "Page Title"
+    - page_title = current_page.data.title || "Page Title"
+    - page_description = current_page.data.description || "Lorem ipsum Non mollit aliquip fugiat pariatur eiusmod fugiat in consectetur in."
+    - page_ogimage = current_page.data.ogimage || "https://upload.wikimedia.org/wikipedia/commons/f/fe/Mark_Zuckerberg_em_setembro_de_2014.jpg"
+
+    %title= page_title
+    
+    %meta{:name => "description", :content => page_description}
+    %meta{:property => "og:title", :content => page_title}
+    %meta{:property => "og:type", :content => "website"}
+    %meta{:property => "og:image", :content => page_ogimage}
+    %meta{:property => "og:description", :content => page_description}
+
+    %link{:href => 'assets/favicon.ico', :rel => 'shortcut icon'}/
 
     = yield_content(:stylesheets)
 
-  %body{class: page_classes}
+  %body
 
     = yield
 
-    #content
+    %main#content
 
     = yield_content(:javascripts)

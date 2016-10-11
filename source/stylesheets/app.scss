@@ -1,5 +1,10 @@
-// @import "bourbon/bourbon";
-
+// Make sure bourbon install --path source/stylesheets
+@import "bourbon/bourbon"; 
 @import "base/base";
+@import "base/settings";
+@import "base/breakpoints";
+@import "base/grid";
+@import "base/fonts";
+@import "base/typography";
 
 @import "components/toy";

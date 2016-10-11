@@ -1,0 +1,8 @@
+
+$font-path: '/assets/';
+
+// Test font
+@font-face {
+  font-family: "WorkSans-Regular";
+  src:  url('#{$font-path}WorkSans-Regular.woff2') format('woff2');
+}

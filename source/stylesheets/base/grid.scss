@@ -1,0 +1,78 @@
+// -----------------------------------
+//
+// Flexbox Grid System
+// 
+// -----------------------------------
+
+//
+// Mixin
+// -----------------------------------
+
+@mixin Grid($align: flex-start, $justify: flex-start, $direction: row) {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include align-items($align);
+  @include justify-content($justify);
+  @include flex-direction($direction);
+}
+
+@mixin Cell($col: 12) {
+  box-sizing: border-box;
+  @include flex-shrink(0);
+  width: calc(100% * #{$col} / 12);
+}
+
+//
+// Grid containers
+// -------------------------------------------------
+
+.cols {
+  @include Grid()
+}
+
+.cols--center {
+  @include Grid(center, center)
+}
+
+.cols--center--spaced {
+  @include Grid(center, space-between)
+}
+
+//
+// Grid items
+// -------------------------------------------------
+
+.col-3 {
+
+  @include mq('phablet') {
+    @include Cell(3);
+  }
+}
+
+.col-4 {
+
+  @include mq('phablet') {
+    @include Cell(4);
+  }
+}
+
+.col-6 {
+
+  @include mq('phablet') {
+    @include Cell(6);
+  }
+}
+
+.col-8 {
+
+  @include mq('phablet') {
+    @include Cell(8);
+  }
+}
+
+.col-12 {
+
+  @include mq('phablet') {
+    @include Cell(12);
+  }
+}

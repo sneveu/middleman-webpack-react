@@ -4,13 +4,9 @@
 // 
 // ------------------------------------
 
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+$font--body: "WorkSans-Regular", sans-serif;
 
 body {
-  margin: 0;
+  font-size: $font-size;
+  font-family: $font--body;
 }
