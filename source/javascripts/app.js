@@ -1,4 +1,5 @@
 import ComponentName from './components/ComponentName';
+import ContentfulExample from './components/ContentfulExample';
 
 export class App extends React.Component{
 
@@ -12,6 +13,7 @@ export class App extends React.Component{
       <div>
         <img src="/assets/Head_40.png" />
         <ComponentName />
+        <ContentfulExample />
       </div>
     )
   }

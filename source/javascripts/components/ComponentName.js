@@ -1,4 +1,3 @@
-
 class ComponentName extends React.Component {
 
   render() {

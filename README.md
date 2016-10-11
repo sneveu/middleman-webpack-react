@@ -21,9 +21,9 @@ NPM is used for package management:
 
     npm install
 
-If you want to use Bourbon, install it manually by going into source/stylesheets:
+If you want to use Bourbon
 
-    bourbon install
+    bourbon install --path source/stylesheets
     
 To get running, start the middleman server:
   
