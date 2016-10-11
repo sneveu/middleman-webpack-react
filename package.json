@@ -16,6 +16,7 @@
     "contentful": "^3.6.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "showdown": "^1.4.3",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

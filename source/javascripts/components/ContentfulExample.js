@@ -30,19 +30,16 @@ class ContentfulExample extends React.Component {
     const self = this;
 
     self.state.client = contentful.createClient({
-      space: 'csauqk4iienq',
-      accessToken: '8d649a3ee08462a6c88bab51eb61c04de055bc4182b4c84f994febfa71bcef4d'
+      space: 'mo94git5zcq9',
+      accessToken: 'b933b531a7f37efbfc68838d24b416ddb3d53ea16377606045d3bfcdf705b0fb'
     })
 
-    self.state.client.getEntries({
-      content_type: 'portfolio'
-    })
+    self.state.client.getEntries()
     .then(function (response) {
 
       self.setState({
-        content: response.items[0].fields
+        content: response.items
       })
-
     })
 
   }
@@ -62,62 +59,35 @@ class ContentfulExample extends React.Component {
 
     const self = this;
 
-    var tracklist, class_intro = this.state.ready ? 'container' : 'container is-intro';
-    
-    tracklist = _.map(self.state.content.songs, function (song, i) {
-      
-      song = song.fields;
+    var entries;
 
-      if (song.track) {
-        return (
-          <li className="tracklist--item can-play" key={"track-"+i}>
-            <a href={song.track} target="_blank">
-              <span className="track-title">{song.title}</span>
-              <span className="credit">{song.credit}</span>
-              <span className="fa fa-play-circle play-btn">▶</span>
-            </a>
-          </li> 
-        )
-      } else {
-        return (
-          <li className="tracklist--item" key={"track-"+i}>
-            <span className="track-title">{song.title}</span>
-            <span className="credit">{song.credit}</span>
-          </li> 
-        )
-      }
-      
-    });
+    console.log(this.state.content);
 
-    var markdown = new showdown.Converter();
-    var bio = markdown.makeHtml(self.state.content.biography);
-    var email = self.state.content.emailAddress;
+    entries = _.map(this.state.content, function (entry, index) {
+
+      var title = entry.fields.title,
+          markdown = new showdown.Converter(),
+          body = markdown.makeHtml(entry.fields.body),
+          image;
+
+      if (entry.fields.image)
+        image = (
+          <img src={entry.fields.image.fields.file.url} />
+        );
+
+      return (
+        <div key={"item"+index}>
+          <h2>{title}</h2>
+          <div dangerouslySetInnerHTML={{__html: body}}></div>
+          {image}
+        </div>
+      );
+    })
 
     return (
-      <main className={class_intro}>
-
-        <header className='page-header'>
-          <div className='span-col-4 align-bottom'>
-            <h1 className='main-title'>David Oversby-Powell</h1>
-          </div>
-          <div className='span-col-4 copy align-bottom hide-for-intro'>
-            <a href={"mailto:"+email}>{email}</a>
-          </div>
-          <div className='span-col-4 copy align-bottom hide-for-intro'>
-            {this.state.content.phoneNumber}
-          </div>
-        </header>
-
-        <section className='page-wrapper hide-for-intro'>
-          <div className='span-col-4' dangerouslySetInnerHTML={{__html: bio}}></div>
-          <div className="span-col-8">
-            <ul className="tracklist display">
-              {tracklist}
-            </ul>
-          </div>
-        </section>
-
-      </main>
+      <div>
+        {entries}
+      </div>
     );
   }
 
