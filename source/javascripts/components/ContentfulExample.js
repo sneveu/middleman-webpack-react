@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import contentful from 'contentful';
 import showdown from 'showdown';
 
@@ -63,7 +62,7 @@ class ContentfulExample extends React.Component {
 
     console.log(this.state.content);
 
-    entries = _.map(this.state.content, function (entry, index) {
+    entries = this.state.content.map((entry, index) => {
 
       var title = entry.fields.title,
           markdown = new showdown.Converter(),
