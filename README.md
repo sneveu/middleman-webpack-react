@@ -9,6 +9,10 @@ It also uses Haml, Sass, and Bourbon.
 
 ## Setup
 
+TL;DR
+
+    bundle install && npm install && bourbon install --path source/stylesheets
+
 The project runs on middleman, so you'll want to get that set up:
 
     sudo gem install middleman
@@ -24,9 +28,9 @@ NPM is used for package management:
 If you want to use Bourbon
 
     bourbon install --path source/stylesheets
-    
+
 To get running, start the middleman server:
-  
+
     middleman
 
 The site is now running at `http://0.0.0.0:4567/`
@@ -39,7 +43,7 @@ Middleman builds to a static `build` folder in the root of the project. To creat
 
 ## Deploying
 
-Builds the site as described above and then deploys it via rsync, ftp, sftp, or git. By default this will 
+Builds the site as described above and then deploys it via rsync, ftp, sftp, or git. By default this will
 push to Github Pages if you have a gh-pages branch setup for your repository.
 
     middleman deploy
